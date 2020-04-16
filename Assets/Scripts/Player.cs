@@ -19,14 +19,14 @@ public class Player : MonoBehaviour
     #region Bullet
 
     [Header("Bullet")]
-    [SerializeField]
-    private Rigidbody bullet;
+    /*[SerializeField]
+    private Rigidbody bullet;*/
 
     [SerializeField]
     private Transform bulletSpawnPoint;
 
-    [SerializeField]
-    private float bulletSpeed = 3F;
+    /*[SerializeField]
+    private float bulletSpeed = 3F;*/
 
     #endregion Bullet
 
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     private bool ReachedRightBound { get => referencePointComponent >= rightCameraBound; }
     private bool ReachedLeftBound { get => referencePointComponent <= leftCameraBound; }
 
-    private bool CanShoot { get => bulletSpawnPoint != null && bullet != null; }
+    private bool CanShoot { get => bulletSpawnPoint != null; }
 
     #endregion MovementProperties
 
@@ -100,12 +100,12 @@ public class Player : MonoBehaviour
                 referencePointComponent = transform.position.x;
             }
 
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-                && CanShoot)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
             {
-                Instantiate<Rigidbody>
-                   (bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation)
-                   .AddForce(transform.up * bulletSpeed, ForceMode.Impulse);
+                /*Instantiate<Rigidbody>
+                    (bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation)
+                    AddForce(transform.up * bulletSpeed, ForceMode.Impulse);*/
+                Pool.Instance.Get().transform.position = bulletSpawnPoint.position;
             }
         }
     }
@@ -121,9 +121,5 @@ public class Player : MonoBehaviour
         player.Score = player.Score + value;
 
     }
-    public void On()
-    {
-        Player player = GetComponent<Player>();
-        player.Lives -= 1;
-    }
+    
 }
