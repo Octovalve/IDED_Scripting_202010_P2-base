@@ -32,23 +32,22 @@ public class Target : MonoBehaviour
             if (currentHP <= 0)
             {
                 Player player = FindObjectOfType<Player>();
-
                 if (player != null)
                 {
-                    player.Score += scoreAdd;
+                    player.Destruido = true;
+                    player.OnPlayerScoreChanged(scoreAdd);
                 }
 
                 Destroy(gameObject);
             }
         }
-        else if (collidedObjectLayer.Equals(Utils.PlayerLayer) ||
-            collidedObjectLayer.Equals(Utils.KillVolumeLayer))
+        else if (collidedObjectLayer.Equals(Utils.PlayerLayer) ||collidedObjectLayer.Equals(Utils.KillVolumeLayer))
         {
             Player player = FindObjectOfType<Player>();
 
             if (player != null)
             {
-                player.Lives -= 1;
+                player.OnPlayerHit();
 
                 if (player.Lives <= 0 && player.OnPlayerDied != null)
                 {

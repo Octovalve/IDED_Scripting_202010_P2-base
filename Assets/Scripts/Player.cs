@@ -4,9 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Player : MonoBehaviour
 {
+    public bool golpeado;
+    public bool Destruido;
     public const int PLAYER_LIVES = 3;
 
-    private const float PLAYER_RADIUS = 0.4F;
+    private const float PLAYER_RADIUS = 1F;
 
     [Header("Movement")]
     [SerializeField]
@@ -74,7 +76,7 @@ public class Player : MonoBehaviour
             0F, 0F, 0F)).x + PLAYER_RADIUS;
 
         rightCameraBound = Camera.main.ViewportToWorldPoint(new Vector3(
-            1F, 0F, 0F)).x - PLAYER_RADIUS;
+            3F, 0F, 0F)).x - PLAYER_RADIUS;
 
         Lives = PLAYER_LIVES;
     }
@@ -82,6 +84,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        Debug.Log(Destruido);
         if (Lives <= 0)
         {
             this.enabled = false;
@@ -105,5 +108,22 @@ public class Player : MonoBehaviour
                    .AddForce(transform.up * bulletSpeed, ForceMode.Impulse);
             }
         }
+    }
+    public void OnPlayerHit()
+    {
+        Player player = GetComponent<Player>();
+        player .Lives -= 1;
+        golpeado = true;
+    }
+    public void OnPlayerScoreChanged(int value)
+    {
+        Player player = GetComponent<Player>();
+        player.Score = player.Score + value;
+
+    }
+    public void On()
+    {
+        Player player = GetComponent<Player>();
+        player.Lives -= 1;
     }
 }

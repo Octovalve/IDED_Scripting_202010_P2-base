@@ -26,6 +26,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        
         ToggleRestartButton(false);
 
         playerRef = FindObjectOfType<Player>();
@@ -35,7 +36,6 @@ public class UIController : MonoBehaviour
             InvokeRepeating("UpdateUI", 0F, tickRate);
         }
     }
-
     private void ToggleRestartButton(bool val)
     {
         if (restartBtn != null)
@@ -43,8 +43,7 @@ public class UIController : MonoBehaviour
             restartBtn.gameObject.SetActive(val);
         }
     }
-
-    private void UpdateUI()
+    public void UpdateVida()
     {
         for (int i = 0; i < lifeImages.Length; i++)
         {
@@ -53,12 +52,16 @@ public class UIController : MonoBehaviour
                 lifeImages[i].gameObject.SetActive(playerRef.Lives >= i + 1);
             }
         }
-
+    }
+    public void UpdateScore()
+    {
         if (scoreLabel != null)
         {
             scoreLabel.text = playerRef.Score.ToString();
         }
-
+    }
+    public void Reload()
+    {
         if (playerRef.Lives <= 0)
         {
             CancelInvoke();
