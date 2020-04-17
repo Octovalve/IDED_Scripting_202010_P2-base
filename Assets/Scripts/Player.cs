@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     private bool ReachedRightBound { get => referencePointComponent >= rightCameraBound; }
     private bool ReachedLeftBound { get => referencePointComponent <= leftCameraBound; }
 
-    private bool CanShoot { get => bulletSpawnPoint != null; }
+    //private bool CanShoot { get => bulletSpawnPoint != null; }
 
     #endregion MovementProperties
 
@@ -84,7 +84,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log(Destruido);
         if (Lives <= 0)
         {
             this.enabled = false;

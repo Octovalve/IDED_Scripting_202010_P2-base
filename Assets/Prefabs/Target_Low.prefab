@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 54445170667756804}
   m_Layer: 10
   m_Name: Target_Low
-  m_TagString: Untagged
+  m_TagString: Target_Low
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,8 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ffb1a118247af4095b52ed68ce2ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  observer: {fileID: 7007616755016030423, guid: 7476f6d26cd271b45809c2fa78506e27,
-    type: 3}
   maxHP: 1
   scoreAdd: 10
 --- !u!54 &54445170667756804
